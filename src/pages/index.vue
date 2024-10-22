@@ -1,7 +1,7 @@
 <template>
   <div>
     <span>
-      owo
+      Index
     </span>
   </div>
 </template>

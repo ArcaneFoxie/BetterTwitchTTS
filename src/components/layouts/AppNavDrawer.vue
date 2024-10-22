@@ -10,9 +10,13 @@
     <v-divider />
 
     <v-list density="compact" nav>
-      <v-list-item prepend-icon="mdi-folder" title="My Files" value="myfiles" />
-      <v-list-item prepend-icon="mdi-account-multiple" title="Shared with me" value="shared" />
-      <v-list-item prepend-icon="mdi-star" title="Starred" value="starred" />
+      <v-list-item prepend-icon="mdi-message-processing" title="Chat" to="/" />
+      <v-list-item prepend-icon="mdi-cog" title="General Settings" to="/general_settings" />
+      <v-list-item prepend-icon="mdi-microphone-message" title="Voice Selector" to="/voice_selector" />
+      <v-list-item prepend-icon="mdi-filter" title="Word Filter" to="/word_filter" />
+      <v-list-item prepend-icon="mdi-file-edit" title="Word Replacement" to="/word_replacement" />
+      <v-list-item prepend-icon="mdi-account-cancel" title="User Blacklist" to="/user_blacklist" />
+      <v-list-item prepend-icon="mdi-bug" title="Debug" to="/debug" />
     </v-list>
   </v-navigation-drawer>
 </template>
