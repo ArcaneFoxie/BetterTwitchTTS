@@ -14,8 +14,6 @@
   const state = appStore()
 
   onMounted(async () => {
-    console.log('owo?')
-
     const res = (await GetUserDetails()).data[0]
 
     state.setTwitchData({
