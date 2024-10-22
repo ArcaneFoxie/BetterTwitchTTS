@@ -10,7 +10,6 @@ declare module 'vue' {
     AppBar: typeof import('./components/layouts/AppBar.vue')['default']
     AppFooter: typeof import('./components/layouts/AppFooter.vue')['default']
     AppNavDrawer: typeof import('./components/layouts/AppNavDrawer.vue')['default']
-    HelloWorld: typeof import('./components/HelloWorld.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
