@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar title="Application bar" />
+  <v-app-bar title="BetterTwitchTTS" />
 </template>
 
 <script setup lang="ts">
