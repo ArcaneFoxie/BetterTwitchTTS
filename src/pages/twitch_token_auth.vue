@@ -11,11 +11,18 @@
   import { useAppStore as appStore } from '@/stores/app'
   import router from '@/router'
 
-  const state = appStore()
-  const test = parseUrlFragments(router.currentRoute.value.fullPath)
+  history.pushState({}, '', router.currentRoute.value.path)
 
-  state.loginTwitch(test)
-  router.push('/')
+  onMounted(() => {
+    if (router.currentRoute.value.fullPath.includes('access_denied')) { return router.push('/') }
+
+    const state = appStore()
+    const test = parseUrlFragments(router.currentRoute.value.fullPath)
+
+    state.loginTwitch(test)
+    router.push('/')
+  })
+
 </script>
 
 <route lang="json">
