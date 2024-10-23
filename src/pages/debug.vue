@@ -4,7 +4,7 @@
       <span style="color:lightslategrey;">{{ log.time.toLocaleTimeString() }}</span>
       :
       <span :style="{ color: getLogColor(log.type) }">{{ LOG_TYPE[log.type] }}</span>
-       - {{ log.log }}
+      - {{ log.log }}
     </div>
   </div>
 </template>
@@ -15,7 +15,7 @@
 
   const store = useAppStore()
 
-  function getLogColor(type: LOG_TYPE) {
+  function getLogColor (type: LOG_TYPE) {
     if (type === LOG_TYPE.DEBUG) { return 'plum' }
     if (type === LOG_TYPE.ERROR) { return '#ae0202' }
     if (type === LOG_TYPE.LOG) { return 'white' }

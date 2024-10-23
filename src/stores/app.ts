@@ -19,7 +19,7 @@ export const useAppStore = defineStore('app', {
       login: '',
       profileImageUrl: '',
     },
-    logs: [],
+    logs: [] as { type: LOG_TYPE, log: string, time: Date }[],
   }),
   actions: {
     async loginTwitch (creds: { access_token: string, id_token: string, scope: string, token_type: string }) {
