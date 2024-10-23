@@ -30,7 +30,7 @@ export const useAppStore = defineStore('app', {
       this.twitchData = data
     },
     addLog (type: LOG_TYPE, log: string) {
-      (this.logs as any).push({ type, log, time: new Date() })
+      this.logs.push({ type, log, time: new Date() })
     },
   },
 })
