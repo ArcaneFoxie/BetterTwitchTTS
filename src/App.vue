@@ -9,3 +9,9 @@
 <script lang="ts" setup>
   //
 </script>
+
+<style>
+html {
+  overflow: auto;
+}
+</style>

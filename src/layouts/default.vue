@@ -6,7 +6,7 @@
         <AppBar />
         <AppNavDrawer />
         <v-main style="min-height: 100vh;">
-          <div style="margin: 24px;">
+          <div style="margin: 24px; max-height: calc(100vh - 155px); overflow-y:auto;">
             <router-view />
           </div>
         </v-main>
