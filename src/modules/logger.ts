@@ -14,7 +14,11 @@ function parseLog (...args: any[]): string {
   let output = ''
   for (let i = 0; i < args.length; i++) {
     if (typeof args[i] !== 'string') {
-      output += JSON.stringify(args[i])
+      if (args[i] instanceof Error) {
+        output += `${args[i].stack}`
+      } else {
+        output += JSON.stringify(args[i])
+      }
     } else {
       output += args[i]
     }
