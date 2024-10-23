@@ -7,5 +7,5 @@
 </template>
 
 <script lang="ts" setup>
-  import '@/modules/logger'
+  //
 </script>

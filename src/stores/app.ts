@@ -1,5 +1,6 @@
 // Utilities
 import { defineStore } from 'pinia'
+import { LOG_TYPE } from '@/modules/logger'
 
 export const useAppStore = defineStore('app', {
   state: () => ({
@@ -18,6 +19,7 @@ export const useAppStore = defineStore('app', {
       login: '',
       profileImageUrl: '',
     },
+    logs: [],
   }),
   actions: {
     async loginTwitch (creds: { access_token: string, id_token: string, scope: string, token_type: string }) {
@@ -26,6 +28,9 @@ export const useAppStore = defineStore('app', {
     },
     setTwitchData (data: { displayName: string, id: string, login: string, profileImageUrl: string }) {
       this.twitchData = data
+    },
+    addLog (type: LOG_TYPE, log: string) {
+      (this.logs as any).push({ type, log, time: new Date() })
     },
   },
 })

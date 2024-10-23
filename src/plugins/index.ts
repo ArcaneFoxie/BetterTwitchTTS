@@ -17,4 +17,6 @@ export function registerPlugins (app: App) {
     .use(vuetify)
     .use(router)
     .use(pinia)
+
+  import('@/modules/logger')
 }
