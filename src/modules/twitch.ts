@@ -35,7 +35,14 @@ class Twitch {
   }
 
   onMessage (channel: string, userstate: ChatUserstate, message: string, self: boolean) {
+    channel = channel.slice(1)
+
     this.store.addChatLog(userstate.color || '#FFFFFF', message, userstate['display-name'] || channel)
+
+    if (this.store.tts.subOnlyMode && (!userstate.subscriber && channel !== this.store.twitchData.login)) { return }
+    if (!this.store.tts.speakCastersMessages && (self || channel === this.store.twitchData.login)) { return }
+
+    tts.say(`${userstate['display-name'] || channel} said. ${message}`)
   }
 }
 
