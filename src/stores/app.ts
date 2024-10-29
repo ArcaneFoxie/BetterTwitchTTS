@@ -34,8 +34,8 @@ export const useAppStore = defineStore('app', {
       speakCastersMessages: loadSetting('speakCastersMessages', true),
       subOnlyMode: loadSetting('subOnlyMode', false),
       blacklistedWords: loadSetting('blacklistedWords', []) as string[],
-      wordReplacement: loadSetting('blacklistedWords', []) as { old: string, new: string }[],
-      userBlacklist: loadSetting('blacklistedWords', []) as string[],
+      wordReplacement: loadSetting('wordReplacement', {}) as { [x: string]: string },
+      userBlacklist: loadSetting('userBlacklist', []) as string[],
     },
   }),
   actions: {

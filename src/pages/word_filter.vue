@@ -33,10 +33,13 @@
 
   function addWord () {
     const trimmedWord = newWord.value.trim()
-    if (trimmedWord && !store.tts.blacklistedWords.includes(trimmedWord)) {
+    if (trimmedWord === '') { return }
+
+    if (!store.tts.blacklistedWords.includes(trimmedWord)) {
       store.tts.blacklistedWords.push(trimmedWord)
       saveBlacklistedWords()
     }
+
     newWord.value = ''
   }
 

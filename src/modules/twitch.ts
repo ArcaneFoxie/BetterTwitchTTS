@@ -1,7 +1,7 @@
 import { useAppStore } from '@/stores/app'
 import tmi, { ChatUserstate } from 'tmi.js'
 import tts from './tts'
-import { containsBlacklistedWord } from './messageUtils'
+import { containsBlacklistedWord, replaceBlacklistedWords } from './messageUtils'
 
 class Twitch {
   client!: tmi.Client
@@ -46,6 +46,7 @@ class Twitch {
     if (!this.store.tts.speakCastersMessages && (self || channel === this.store.twitchData.login)) { return }
 
     if (containsBlacklistedWord(message)) { return }
+    message = replaceBlacklistedWords(message)
 
     if (!this.store.tts.repeatUsernames && this.lastSpokenUsername === channel) {
       tts.say(message)
