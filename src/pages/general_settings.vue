@@ -67,6 +67,8 @@
           label="Sub Only Mode"
           @change="saveSetting('subOnlyMode', store.tts.subOnlyMode)"
         />
+
+        <v-btn text="Test message" @click="testMessage" />
       </v-col>
     </v-row>
   </v-container>
@@ -74,6 +76,7 @@
 
 <script lang="ts" setup>
   import { useAppStore } from '@/stores/app'
+  import tts from '@/modules/tts'
 
   const store = useAppStore()
 
@@ -81,4 +84,7 @@
     window.localStorage.setItem(name, value.toString())
   }
 
+  function testMessage () {
+    tts.say('This is a test message', true)
+  }
 </script>
