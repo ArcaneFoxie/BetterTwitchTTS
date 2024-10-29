@@ -7,7 +7,6 @@
 </template>
 
 <script lang="ts" setup>
-  // import Twitch from '@/modules/twitch'
   import { GetUserDetails } from '@/modules/twitch-api'
   import { useAppStore as appStore } from '@/stores/app'
 
@@ -22,8 +21,6 @@
       login: res.login,
       profileImageUrl: res.profile_image_url,
     })
-
-    // Twitch.connect('ArcaneFoxie')
   })
 
 </script>

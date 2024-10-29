@@ -11,3 +11,48 @@ export function parseUrlFragments (input: string): { access_token: string, id_to
 
   return output
 }
+
+export function getVoiceIndexFromName (input: string | null) {
+  // aa-BB#VOICE NAME
+
+  if (input === null) { return getDefaultVoice() }
+
+  const split = input.split('#')
+  const lang = split.splice(0, 1)[0]
+  const name = split.join('#')
+
+  const voices = window.speechSynthesis.getVoices()
+
+  let foundVoice: SpeechSynthesisVoice | null = null
+
+  for (let i = 0; i < voices.length; i++) {
+    if (voices[i].lang === lang && voices[i].name === name) {
+      foundVoice = voices[i]
+      break
+    }
+  }
+
+  if (foundVoice === null) {
+    foundVoice = getDefaultVoice()
+  }
+
+  return foundVoice
+}
+
+export function getDefaultVoice (): SpeechSynthesisVoice {
+  const voices = window.speechSynthesis.getVoices()
+
+  let foundVoice: SpeechSynthesisVoice | null = null
+  for (let i = 0; i < voices.length; i++) {
+    if (voices[i].default) {
+      foundVoice = voices[i]
+      break
+    }
+  }
+
+  if (foundVoice === null) {
+    throw new Error('Unable to find default voice')
+  }
+
+  return foundVoice
+}

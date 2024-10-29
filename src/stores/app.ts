@@ -20,6 +20,10 @@ export const useAppStore = defineStore('app', {
       profileImageUrl: '',
     },
     logs: [] as { type: LOG_TYPE, log: string, time: Date }[],
+    tts: {
+      connected: false,
+      selectedVoice: '',
+    },
   }),
   actions: {
     async loginTwitch (creds: { access_token: string, id_token: string, scope: string, token_type: string }) {
@@ -31,6 +35,12 @@ export const useAppStore = defineStore('app', {
     },
     addLog (type: LOG_TYPE, log: string) {
       this.logs.push({ type, log, time: new Date() })
+    },
+    setTtsConnected (state: boolean) {
+      this.tts.connected = state
+    },
+    setTtsVoice (voice: string) {
+      this.tts.selectedVoice = voice
     },
   },
 })
