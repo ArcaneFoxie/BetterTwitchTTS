@@ -19,11 +19,11 @@
         />
 
         <!-- Blacklisted Words List -->
-        <div v-for="(replacementWord, bannedWord) in store.tts.wordReplacement" :key="bannedWord">
+        <div v-for="(replacedWord, bannedWord) in store.tts.wordReplacement" :key="bannedWord">
           <v-btn icon @click="removeWord(bannedWord as string)">
             <v-icon>mdi-delete</v-icon>
           </v-btn>
-          {{ bannedWord }} -> {{  replacementWord }}
+          {{ bannedWord }} -> {{ replacedWord }}
         </div>
       </v-col>
     </v-row>
