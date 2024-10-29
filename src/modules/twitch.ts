@@ -42,6 +42,7 @@ class Twitch {
 
     this.store.addChatLog(userstate.color || '#FFFFFF', message, userstate['display-name'] || channel)
 
+    if (this.store.tts.userBlacklist.includes(channel)) { return }
     if (this.store.tts.subOnlyMode && (!userstate.subscriber && channel !== this.store.twitchData.login)) { return }
     if (!this.store.tts.speakCastersMessages && (self || channel === this.store.twitchData.login)) { return }
 
