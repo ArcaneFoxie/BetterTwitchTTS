@@ -19,9 +19,12 @@ export const useAppStore = defineStore('app', {
       login: '',
       profileImageUrl: '',
     },
-    logs: [] as { type: LOG_TYPE, log: string, time: Date }[],
-    tts: {
+    tmi: {
       connected: false,
+    },
+    logs: [] as { type: LOG_TYPE, log: string, time: Date }[],
+    messages: [] as { color: string, message: string, time: Date, username: string }[],
+    tts: {
       selectedVoice: '',
     },
   }),
@@ -36,8 +39,8 @@ export const useAppStore = defineStore('app', {
     addLog (type: LOG_TYPE, log: string) {
       this.logs.push({ type, log, time: new Date() })
     },
-    setTtsConnected (state: boolean) {
-      this.tts.connected = state
+    addChatLog (color: string, message: string, username: string) {
+      this.messages.push({ color, message, username, time: new Date() })
     },
     setTtsVoice (voice: string) {
       this.tts.selectedVoice = voice

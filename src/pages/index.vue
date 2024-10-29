@@ -1,8 +1,11 @@
 <template>
   <div>
-    <span>
-      Index
-    </span>
+    <div v-for="(log, index) in logs" :key="`log-${index}`" :class="{ 'altline' : index % 2 }">
+      <span style="color:lightslategrey;">{{ log.time.toLocaleTimeString() }}</span>
+      :
+      <span :style="{ color: `${log.color}` }">{{ log.username }}</span>
+      - {{ log.message }}
+    </div>
   </div>
 </template>
 
@@ -23,4 +26,7 @@
     })
   })
 
+  const logs = computed(() => {
+    return state.messages.slice(0).reverse()
+  })
 </script>

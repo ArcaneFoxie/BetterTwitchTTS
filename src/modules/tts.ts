@@ -29,14 +29,6 @@ class TTS {
     this.say('Starting Speech Synthesis')
   }
 
-  connect () {
-    this.store.setTtsConnected(true)
-  }
-
-  disconnect () {
-    this.store.setTtsConnected(false)
-  }
-
   setVoice (voice: SpeechSynthesisVoice) {
     this.store.setTtsVoice(`${voice.lang}#${voice.name}`)
     window.localStorage.setItem('TTSVoice', `${voice.lang}#${voice.name}`)
