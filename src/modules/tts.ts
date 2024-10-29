@@ -42,11 +42,9 @@ class TTS {
       this.synth.cancel()
     }
 
-    // this.utter.lang
-    // this.utter.voice
-    // this.utter.pitch
-    // this.utter.rate
-    // this.utter.volume
+    this.utter.pitch = this.store.tts.pitch
+    this.utter.rate = this.store.tts.rate
+    this.utter.volume = this.store.tts.volume
 
     this.utter.text = input
     this.synth.speak(this.utter)

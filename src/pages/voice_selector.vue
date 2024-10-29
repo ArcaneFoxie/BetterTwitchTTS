@@ -31,7 +31,6 @@
 
   function populateList () {
     selectedVoice.value = store.tts.selectedVoice
-    console.log(selectedVoice.value)
     sortedVoices.value = voices.sort((a, b) => `${a.lang} - ${a.name}`.toLowerCase().localeCompare(`${b.lang} - ${b.name}`.toLowerCase()))
   }
 

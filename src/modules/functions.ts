@@ -56,3 +56,15 @@ export function getDefaultVoice (): SpeechSynthesisVoice {
 
   return foundVoice
 }
+
+export function loadSetting <T> (name: string, fallback: T): T {
+  const value = window.localStorage.getItem(name)
+  let output: any = null
+
+  if (value !== null) {
+    if (typeof fallback === 'boolean') { output = value === 'true' }
+    if (typeof fallback === 'number') { output = Number(value) }
+  }
+
+  return output === null ? fallback : output
+}

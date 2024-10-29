@@ -1,6 +1,7 @@
 // Utilities
 import { defineStore } from 'pinia'
 import { LOG_TYPE } from '@/modules/logger'
+import { loadSetting } from '@/modules/functions'
 
 export const useAppStore = defineStore('app', {
   state: () => ({
@@ -26,6 +27,12 @@ export const useAppStore = defineStore('app', {
     messages: [] as { color: string, message: string, time: Date, username: string }[],
     tts: {
       selectedVoice: '',
+      volume: loadSetting('volume', 0.5),
+      rate: loadSetting('rate', 1),
+      pitch: loadSetting('pitch', 1),
+      repeatUsernames: loadSetting('repeatUsernames', true),
+      speakCastersMessages: loadSetting('speakCastersMessages', true),
+      subOnlyMode: loadSetting('subOnlyMode', false),
     },
   }),
   actions: {
