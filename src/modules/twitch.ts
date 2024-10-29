@@ -1,13 +1,16 @@
 import { useAppStore } from '@/stores/app'
 import tmi, { ChatUserstate } from 'tmi.js'
 import tts from './tts'
+import { containsBlacklistedWord } from './messageUtils'
 
 class Twitch {
   client!: tmi.Client
   store: ReturnType<typeof useAppStore>
+  lastSpokenUsername: string
 
   constructor () {
     this.store = useAppStore()
+    this.lastSpokenUsername = ''
   }
 
   async connect () {
@@ -42,7 +45,15 @@ class Twitch {
     if (this.store.tts.subOnlyMode && (!userstate.subscriber && channel !== this.store.twitchData.login)) { return }
     if (!this.store.tts.speakCastersMessages && (self || channel === this.store.twitchData.login)) { return }
 
-    tts.say(`${userstate['display-name'] || channel} said. ${message}`)
+    if (containsBlacklistedWord(message)) { return }
+
+    if (!this.store.tts.repeatUsernames && this.lastSpokenUsername === channel) {
+      tts.say(message)
+    } else {
+      tts.say(`${userstate['display-name'] || channel} said. ${message}`)
+    }
+
+    this.lastSpokenUsername = channel
   }
 }
 

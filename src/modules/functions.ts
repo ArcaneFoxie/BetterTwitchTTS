@@ -64,6 +64,7 @@ export function loadSetting <T> (name: string, fallback: T): T {
   if (value !== null) {
     if (typeof fallback === 'boolean') { output = value === 'true' }
     if (typeof fallback === 'number') { output = Number(value) }
+    if (Array.isArray(fallback)) { output = JSON.parse(value) }
   }
 
   return output === null ? fallback : output

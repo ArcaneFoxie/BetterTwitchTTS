@@ -38,9 +38,9 @@ class TTS {
     if (!this.voice) { return }
 
     const utter = new SpeechSynthesisUtterance()
-
     utter.lang = this.voice.lang
     utter.voice = this.voice
+
     if (forced && this.synth.speaking) {
       this.synth.cancel()
     }
