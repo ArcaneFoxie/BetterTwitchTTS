@@ -16,6 +16,7 @@
       <v-list-item prepend-icon="mdi-filter" title="Word Filter" to="/word_filter" />
       <v-list-item prepend-icon="mdi-file-edit" title="Word Replacement" to="/word_replacement" />
       <v-list-item prepend-icon="mdi-account-cancel" title="User Blacklist" to="/user_blacklist" />
+      <v-list-item prepend-icon="mdi-swap-horizontal" title="Username Replacement" to="/username_replacement" />
       <v-list-item prepend-icon="mdi-bug" title="Debug" to="/debug" />
     </v-list>
   </v-navigation-drawer>

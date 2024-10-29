@@ -36,6 +36,7 @@ export const useAppStore = defineStore('app', {
       blacklistedWords: loadSetting('blacklistedWords', []) as string[],
       wordReplacement: loadSetting('wordReplacement', {}) as { [x: string]: string },
       userBlacklist: loadSetting('userBlacklist', []) as string[],
+      usernameReplacement: loadSetting('usernameReplacement', {}) as { [x: string]: string },
     },
   }),
   actions: {

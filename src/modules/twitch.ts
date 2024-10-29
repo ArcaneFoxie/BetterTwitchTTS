@@ -52,7 +52,11 @@ class Twitch {
     if (!this.store.tts.repeatUsernames && this.lastSpokenUsername === channel) {
       tts.say(message)
     } else {
-      tts.say(`${userstate['display-name'] || channel} said. ${message}`)
+      if (this.store.tts.usernameReplacement[channel]) {
+        tts.say(`${this.store.tts.usernameReplacement[channel]} said ${message}`)
+      } else {
+        tts.say(`${userstate['display-name'] || channel} said. ${message}`)
+      }
     }
 
     this.lastSpokenUsername = channel
