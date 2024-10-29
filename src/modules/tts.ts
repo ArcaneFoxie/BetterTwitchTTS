@@ -4,12 +4,11 @@ import { getDefaultVoice, getVoiceIndexFromName } from './functions'
 class TTS {
   store: ReturnType<typeof useAppStore>
   synth: SpeechSynthesis
-  utter: SpeechSynthesisUtterance
+  voice?: SpeechSynthesisVoice
 
   constructor () {
     this.store = useAppStore()
     this.synth = window.speechSynthesis
-    this.utter = new SpeechSynthesisUtterance()
 
     window.speechSynthesis.addEventListener('voiceschanged', this.init.bind(this))
   }
@@ -32,22 +31,26 @@ class TTS {
   setVoice (voice: SpeechSynthesisVoice) {
     this.store.setTtsVoice(`${voice.lang}#${voice.name}`)
     window.localStorage.setItem('TTSVoice', `${voice.lang}#${voice.name}`)
-
-    this.utter.lang = voice.lang
-    this.utter.voice = voice
+    this.voice = voice
   }
 
   say (input: string, forced = false) {
+    if (!this.voice) { return }
+
+    const utter = new SpeechSynthesisUtterance()
+
+    utter.lang = this.voice.lang
+    utter.voice = this.voice
     if (forced && this.synth.speaking) {
       this.synth.cancel()
     }
 
-    this.utter.pitch = this.store.tts.pitch
-    this.utter.rate = this.store.tts.rate
-    this.utter.volume = this.store.tts.volume
+    utter.pitch = this.store.tts.pitch
+    utter.rate = this.store.tts.rate
+    utter.volume = this.store.tts.volume
 
-    this.utter.text = input
-    this.synth.speak(this.utter)
+    utter.text = input
+    this.synth.speak(utter)
   }
 }
 
