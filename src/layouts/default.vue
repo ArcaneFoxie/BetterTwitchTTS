@@ -27,6 +27,6 @@
   const isAuthenticated = state.$state.twitchAuthentication.authenticated
 
   function redirect () {
-    window.location.assign(`https://id.twitch.tv/oauth2/authorize?response_type=token+id_token&client_id=${config.clientId}&redirect_uri=http://localhost:3000/twitch_token_auth&scope=user%3Abot+openid`)
+    window.location.assign(`https://id.twitch.tv/oauth2/authorize?response_type=token+id_token&client_id=${config.clientId}&redirect_uri=https://bettertwitchtts.arcanefoxie.online/twitch_token_auth&scope=user%3Abot+openid`)
   }
 </script>
