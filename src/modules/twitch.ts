@@ -38,28 +38,28 @@ class Twitch {
   }
 
   onMessage (channel: string, userstate: ChatUserstate, message: string, self: boolean) {
-    channel = channel.slice(1)
+    if (!userstate.username) { return }
 
-    this.store.addChatLog(userstate.color || '#FFFFFF', message, userstate['display-name'] || channel)
+    this.store.addChatLog(userstate.color || '#FFFFFF', message, userstate['display-name'] || userstate.username)
 
-    if (this.store.tts.userBlacklist.includes(channel)) { return }
-    if (this.store.tts.subOnlyMode && (!userstate.subscriber && channel !== this.store.twitchData.login)) { return }
-    if (!this.store.tts.speakCastersMessages && (self || channel === this.store.twitchData.login)) { return }
+    if (this.store.tts.userBlacklist.includes(userstate.username)) { return }
+    if (this.store.tts.subOnlyMode && (!userstate.subscriber && userstate.username !== this.store.twitchData.login)) { return }
+    if (!this.store.tts.speakCastersMessages && (self || userstate.username === this.store.twitchData.login)) { return }
 
     if (containsBlacklistedWord(message)) { return }
     message = replaceBlacklistedWords(message)
 
-    if (!this.store.tts.repeatUsernames && this.lastSpokenUsername === channel) {
+    if (!this.store.tts.repeatUsernames && this.lastSpokenUsername === userstate.username) {
       tts.say(message)
     } else {
-      if (this.store.tts.usernameReplacement[channel]) {
-        tts.say(`${this.store.tts.usernameReplacement[channel]} said ${message}`)
+      if (this.store.tts.usernameReplacement[userstate.username]) {
+        tts.say(`${this.store.tts.usernameReplacement[userstate.username]} said ${message}`)
       } else {
-        tts.say(`${userstate['display-name'] || channel} said. ${message}`)
+        tts.say(`${userstate['display-name'] || userstate.username} said. ${message}`)
       }
     }
 
-    this.lastSpokenUsername = channel
+    this.lastSpokenUsername = userstate.username
   }
 }
 
