@@ -5,8 +5,11 @@ class TTS {
   store: ReturnType<typeof useAppStore>
   synth: SpeechSynthesis
   voice?: SpeechSynthesisVoice
+  loaded: boolean
 
   constructor () {
+    this.loaded = false
+
     this.store = useAppStore()
     this.synth = window.speechSynthesis
 
@@ -15,6 +18,8 @@ class TTS {
 
   async init () {
     if (!this.store.twitchAuthentication.authenticated) { return }
+    if (this.loaded) { return }
+    this.loaded = true
 
     window.speechSynthesis.removeEventListener('voiceschanged', this.init.bind(this))
 
