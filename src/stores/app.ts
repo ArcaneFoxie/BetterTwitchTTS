@@ -27,6 +27,7 @@ export const useAppStore = defineStore('app', {
     messages: [] as { color: string, message: string, time: Date, username: string }[],
     tts: {
       selectedVoice: '',
+      minChar: loadSetting('minChar', 2),
       volume: loadSetting('volume', 0.5),
       rate: loadSetting('rate', 1),
       pitch: loadSetting('pitch', 1),

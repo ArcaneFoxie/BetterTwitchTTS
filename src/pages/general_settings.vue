@@ -68,6 +68,21 @@
           @change="saveSetting('subOnlyMode', store.tts.subOnlyMode)"
         />
 
+        <!-- Minimal char Slider -->
+        <v-slider
+          v-model="store.tts.minChar"
+          label="Minimal Characters"
+          :max="10"
+          :min="1"
+          step="1"
+          tick-size="2"
+          @end="saveSetting('minChar', store.tts.minChar)"
+        >
+          <template #append>
+            <span>{{ store.tts.minChar }}</span>
+          </template>
+        </v-slider>
+
         <v-btn text="Test message" @click="testMessage" />
       </v-col>
     </v-row>

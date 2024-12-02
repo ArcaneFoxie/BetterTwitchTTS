@@ -49,6 +49,8 @@ class Twitch {
     if (containsBlacklistedWord(message)) { return }
     message = replaceBlacklistedWords(message)
 
+    if (message.length < this.store.tts.minChar) { return }
+
     if (!this.store.tts.repeatUsernames && this.lastSpokenUsername === userstate.username) {
       tts.say(message)
     } else {
